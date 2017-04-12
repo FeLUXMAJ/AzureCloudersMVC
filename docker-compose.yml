@@ -1,0 +1,8 @@
+version: '2'
+
+services:
+  azurecloudermvc:
+    image: azurecloudermvc
+    build:
+      context: ./AzureClouderMVC
+      dockerfile: Dockerfile
