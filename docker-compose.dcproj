@@ -3,7 +3,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>5ff79a11-c123-494d-ba63-2d679b0e1758</ProjectGuid>
     <DockerLaunchBrowser>True</DockerLaunchBrowser>
-    <DockerServiceUrl>http://localhost:{ServicePort}</DockerServiceUrl>
+    <DockerServiceUrl>http://localhost:5000</DockerServiceUrl>
     <DockerServiceName>azurecloudermvc</DockerServiceName>
   </PropertyGroup>
   <ItemGroup>

@@ -2,11 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AzureClouderMVC.Configuration;
+using AzureClouders.AzureStorage.Factories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using AzureClouders.AzureStorage.Interfaces;
 
 namespace AzureClouderMVC
 {
@@ -27,6 +30,10 @@ namespace AzureClouderMVC
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.Configure<AzureStorageSettings>(Configuration.GetSection(nameof(AzureStorageSettings)));
+
+            services.AddScoped<IAzureFileHandlerFactory, AzureFileHandlerFactory>();
+
             // Add framework services.
             services.AddMvc();
         }

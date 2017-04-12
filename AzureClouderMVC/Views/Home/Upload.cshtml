@@ -1,0 +1,14 @@
+﻿@{
+    var message = ViewBag.Message; 
+}
+
+<h1>@message</h1>
+ 
+@using (Html.BeginForm(FormMethod.Post, new { @class = "form-horizontal", @enctype = "multipart/form-data" }))
+{
+    <input name="file" type="file"/>
+
+    <hr/>
+
+    <button class="btn btn-default" type="submit">Upload</button>
+}
