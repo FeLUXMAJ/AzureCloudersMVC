@@ -6,6 +6,7 @@ using AzureClouderMVC.Configuration;
 using AzureClouders.AzureStorage.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 
 namespace AzureClouderMVC.Controllers
@@ -16,17 +17,34 @@ namespace AzureClouderMVC.Controllers
 
         private readonly IAzureFileHandlerFactory _azureFileHandlerFactory;
 
+        private readonly IDistributedCache _cache;
+
         public HomeController(
             IOptions<AzureStorageSettings> azureSettings,
-            IAzureFileHandlerFactory azureFileHandlerFactory)
+            IAzureFileHandlerFactory azureFileHandlerFactory,
+            IDistributedCache cache)
         {
+            _cache = cache;
             _azureSettings = azureSettings.Value;
             _azureFileHandlerFactory = azureFileHandlerFactory;
         }
 
-
+        [HttpGet]
         public IActionResult Index()
         {
+            string value = _cache.GetString("CacheTime");
+
+            if (value == null)
+            {
+                value = DateTime.Now.ToString();
+
+                var options = new DistributedCacheEntryOptions();
+                options.SetSlidingExpiration(TimeSpan.FromMinutes(1));
+                _cache.SetString("CacheTime", value, options );
+            }
+
+            ViewData["CacheTime"] = value;
+            ViewData["CurrentTime"] = DateTime.Now.ToString();
             return View();
         }
 
@@ -48,24 +66,17 @@ namespace AzureClouderMVC.Controllers
             #endregion
 
             ViewBag.Message = $"It's Ok, File Uploaded, your image link is {url}";
-
-            #region Queue Message
-            //var azureFileService = _azureFileHandlerFactory.GetService(
-            //    _azureSettings.ConnectionString,
-            //    _azureSettings.ImagesContainer
-            //);
-            //var url = await azureFileService.SaveFileAsync(file);
-            #endregion
-
             return View();
         }
 
+        [HttpGet]
         public IActionResult Games()
         {
-            throw new NotImplementedException();
+            return View();
         }
 
-        public IActionResult Games(string title)
+        [HttpPost]
+        public async Task<IActionResult> Games(string title)
         {
             throw new NotImplementedException();
         }
