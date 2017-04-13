@@ -7,8 +7,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AzureClouderMVC", "AzureClo
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureClouders.AzureStorage", "AzureClouder.AzureStorage\AzureClouders.AzureStorage.csproj", "{5AB5B42E-2763-4DBC-A407-7BDA1C48F83E}"
 EndProject
-Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{011FA16D-2980-4BD7-8203-775E53B29E22}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -23,10 +21,6 @@ Global
 		{5AB5B42E-2763-4DBC-A407-7BDA1C48F83E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5AB5B42E-2763-4DBC-A407-7BDA1C48F83E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5AB5B42E-2763-4DBC-A407-7BDA1C48F83E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{011FA16D-2980-4BD7-8203-775E53B29E22}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{011FA16D-2980-4BD7-8203-775E53B29E22}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{011FA16D-2980-4BD7-8203-775E53B29E22}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{011FA16D-2980-4BD7-8203-775E53B29E22}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
