@@ -8,18 +8,15 @@ using Newtonsoft.Json;
 
 namespace AzureClouderMVC.Utils
 {
-    public class GameHttpClient
+    public static class GameHttpClient
     {
-        public static async Task<IList<T>> GetAsync<T>(string uri, Dictionary<string, string> headers, Dictionary<string, string> parameters)
+        public static async Task<IList<T>> GetAsync<T>(string uri, string name, string value)
         {
             string responseString;
 
             using (var client = new HttpClient())
             {
-                foreach (var header in headers)
-                    client.DefaultRequestHeaders.Add(header.Key, header.Value);
-
-                var completeUri = QueryHelpers.AddQueryString(uri, parameters);
+                var completeUri = QueryHelpers.AddQueryString(uri, name, value);
                 var response = await client.GetAsync(completeUri);
                 responseString = await response.Content.ReadAsStringAsync();
             }

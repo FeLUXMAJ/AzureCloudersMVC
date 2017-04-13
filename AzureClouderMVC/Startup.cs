@@ -32,6 +32,8 @@ namespace AzureClouderMVC
         {
             services.Configure<AzureStorageSettings>(Configuration.GetSection(nameof(AzureStorageSettings)));
 
+            services.Configure<ApiSettings>(Configuration.GetSection(nameof(ApiSettings)));
+
             services.AddScoped<IAzureFileHandlerFactory, AzureFileHandlerFactory>();
 
             // Add framework services.
