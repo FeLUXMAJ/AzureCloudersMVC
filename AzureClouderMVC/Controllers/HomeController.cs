@@ -39,19 +39,6 @@ namespace AzureClouderMVC.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            string value = _cache.GetString("CacheTime");
-
-            if (value == null)
-            {
-                value = DateTime.Now.ToString();
-
-                var options = new DistributedCacheEntryOptions();
-                options.SetSlidingExpiration(TimeSpan.FromMinutes(1));
-                _cache.SetString("CacheTime", value, options );
-            }
-
-            ViewData["CacheTime"] = value;
-            ViewData["CurrentTime"] = DateTime.Now.ToString();
             return View();
         }
 
